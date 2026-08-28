@@ -1,0 +1,2258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>沖縄 → 台湾 準備ロードマップ</title>
+
+<style>
+  :root{
+    --ink:#16242c;
+    --paper:#fbf8f2;
+    --ocean:#153a4b;
+    --turquoise:#1fb6a6;
+    --mango:#ff9d2e;
+    --gray:#7c8e97;
+    --line:#d8dfe0;
+    --danger:#c95757;
+  }
+
+  *{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  html,body{
+    margin:0;
+    padding:0;
+  }
+
+  body{
+    background:var(--ocean);
+    background-image:
+      radial-gradient(circle at 15% 8%,rgba(31,182,166,.25),transparent 40%),
+      radial-gradient(circle at 90% 0%,rgba(255,157,46,.18),transparent 35%);
+    color:var(--ink);
+    font-family:
+      "Hiragino Sans",
+      "Hiragino Kaku Gothic ProN",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    min-height:100vh;
+    padding:18px 12px 60px;
+  }
+
+  button,
+  input,
+  textarea{
+    font:inherit;
+  }
+
+  .wrap{
+    max-width:480px;
+    margin:0 auto;
+  }
+
+  /* =========================
+     JOIN SCREEN
+  ========================= */
+
+  .join-screen{
+    min-height:calc(100vh - 78px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .join-card{
+    width:100%;
+    background:var(--paper);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+  }
+
+  .join-top{
+    background:linear-gradient(135deg,var(--ocean),#0e2733);
+    color:var(--paper);
+    padding:26px 22px;
+  }
+
+  .join-title{
+    font-size:22px;
+    font-weight:800;
+    margin:0 0 8px;
+  }
+
+  .join-subtitle{
+    margin:0;
+    color:#c7d6db;
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  .join-body{
+    padding:22px;
+  }
+
+  .field{
+    margin-bottom:16px;
+  }
+
+  .field label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
+    color:var(--gray);
+  }
+
+  .field input{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:white;
+    color:var(--ink);
+    outline:none;
+  }
+
+  .field input:focus{
+    border-color:var(--turquoise);
+    box-shadow:0 0 0 3px rgba(31,182,166,.12);
+  }
+
+  .primary-btn{
+    width:100%;
+    border:0;
+    border-radius:11px;
+    padding:13px;
+    background:var(--turquoise);
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+  }
+
+  .secondary-btn{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:12px;
+    background:white;
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  .join-divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:20px 0;
+    color:var(--gray);
+    font-size:11px;
+  }
+
+  .join-divider::before,
+  .join-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .error-msg{
+    color:var(--danger);
+    font-size:12px;
+    margin-top:10px;
+    line-height:1.5;
+  }
+
+  .code-display{
+    text-align:center;
+    background:#f2f6ee;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+  }
+
+  .code-display-label{
+    font-size:11px;
+    color:var(--gray);
+    margin-bottom:4px;
+  }
+
+  .trip-code{
+    font-family:"Courier New",monospace;
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:.15em;
+  }
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  .pass{
+    background:var(--paper);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+  }
+
+  .pass-top{
+    background:linear-gradient(135deg,var(--ocean),#0e2733);
+    color:var(--paper);
+    padding:20px 20px 26px;
+    position:relative;
+  }
+
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--turquoise);
+    font-weight:700;
+    margin:0 0 6px;
+  }
+
+  .route{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Courier New",monospace;
+    font-weight:700;
+    font-size:26px;
+    letter-spacing:.03em;
+  }
+
+  .route .arrow{
+    color:var(--mango);
+    font-size:20px;
+  }
+
+  .sub{
+    margin-top:6px;
+    font-size:13px;
+    color:#c7d6db;
+    font-family:"Courier New",monospace;
+    letter-spacing:.04em;
+  }
+
+  .dday{
+    position:absolute;
+    right:18px;
+    top:18px;
+    text-align:right;
+  }
+
+  .dday .num{
+    font-family:"Courier New",monospace;
+    font-size:30px;
+    font-weight:800;
+    color:var(--mango);
+    line-height:1;
+  }
+
+  .dday .label{
+    font-size:10px;
+    color:#9fb3ba;
+    letter-spacing:.12em;
+  }
+
+  .perf{
+    position:relative;
+    height:0;
+    border-top:2px dashed var(--line);
+    margin:0 20px;
+  }
+
+  .perf::before,
+  .perf::after{
+    content:"";
+    position:absolute;
+    top:-11px;
+    width:22px;
+    height:22px;
+    background:var(--ocean);
+    border-radius:50%;
+  }
+
+  .perf::before{left:-31px;}
+  .perf::after{right:-31px;}
+
+  .pass-bottom{
+    padding:16px 20px 20px;
+    display:flex;
+    justify-content:space-between;
+    font-family:"Courier New",monospace;
+    font-size:12px;
+    color:var(--gray);
+  }
+
+  .pass-bottom b{
+    display:block;
+    color:var(--ink);
+    font-size:14px;
+    margin-top:2px;
+  }
+
+  /* =========================
+     PROGRESS
+  ========================= */
+
+  .progress-card{
+    margin-top:14px;
+    background:rgba(251,248,242,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    padding:14px 16px;
+    color:var(--paper);
+  }
+
+  .progress-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#c7d6db;
+    margin-bottom:8px;
+  }
+
+  .bar{
+    height:8px;
+    background:rgba(255,255,255,.15);
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--turquoise),var(--mango));
+    width:0%;
+    transition:width .4s ease;
+  }
+
+  .status-msg{
+    text-align:center;
+    color:#c7d6db;
+    font-size:12px;
+    margin-top:8px;
+    min-height:16px;
+  }
+
+  /* =========================
+     TOOLBAR
+  ========================= */
+
+  .toolbar{
+    margin-top:14px;
+    display:flex;
+    gap:6px;
+  }
+
+  .filter-btn{
+    flex:1;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(251,248,242,.08);
+    color:#c7d6db;
+    border-radius:9px;
+    padding:8px 5px;
+    font-size:11px;
+    cursor:pointer;
+  }
+
+  .filter-btn.active{
+    background:var(--turquoise);
+    border-color:var(--turquoise);
+    color:white;
+    font-weight:700;
+  }
+
+  /* =========================
+     PHASE
+  ========================= */
+
+  .phase{
+    margin-top:22px;
+  }
+
+  .phase-head{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:10px;
+    padding-left:2px;
+  }
+
+  .phase-tag{
+    font-family:"Courier New",monospace;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--mango);
+    background:rgba(255,157,46,.15);
+    border:1px solid rgba(255,157,46,.4);
+    padding:2px 8px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+
+  .phase-title{
+    color:var(--paper);
+    font-size:15px;
+    font-weight:700;
+  }
+
+  .phase-when{
+    color:#9fb3ba;
+    font-size:12px;
+    margin-left:auto;
+    font-family:"Courier New",monospace;
+  }
+
+  .card{
+    background:var(--paper);
+    border-radius:14px;
+    overflow:hidden;
+  }
+
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:13px 16px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .item:last-child{
+    border-bottom:none;
+  }
+
+  .item.done{
+    background:#f2f6ee;
+  }
+
+  .check{
+    flex:none;
+    width:24px;
+    height:24px;
+    border-radius:7px;
+    border:2px solid var(--turquoise);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:1px;
+    cursor:pointer;
+  }
+
+  .check.checked{
+    background:var(--turquoise);
+  }
+
+  .check svg{
+    width:14px;
+    height:14px;
+    stroke:white;
+    fill:none;
+    stroke-width:3;
+    opacity:0;
+  }
+
+  .check.checked svg{
+    opacity:1;
+  }
+
+  .item-body{
+    flex:1;
+    min-width:0;
+  }
+
+  .item-title{
+    font-size:14.5px;
+    font-weight:600;
+    line-height:1.4;
+  }
+
+  .item.done .item-title{
+    color:var(--gray);
+    text-decoration:line-through;
+  }
+
+  .item-note{
+    font-size:12.5px;
+    color:var(--gray);
+    margin-top:3px;
+    line-height:1.5;
+  }
+
+  .last-updated{
+    margin-top:7px;
+    font-size:10.5px;
+    color:var(--gray);
+  }
+
+  .last-updated strong{
+    color:var(--ink);
+  }
+
+  .memo-box{
+    margin-top:10px;
+  }
+
+  .memo-box textarea{
+    width:100%;
+    min-height:55px;
+    resize:vertical;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:8px 9px;
+    font-size:12px;
+    background:white;
+    outline:none;
+  }
+
+  .memo-box textarea:focus{
+    border-color:var(--turquoise);
+  }
+
+  .memo-save{
+    margin-top:5px;
+    border:0;
+    border-radius:7px;
+    padding:6px 10px;
+    background:var(--ocean);
+    color:white;
+    font-size:10px;
+    cursor:pointer;
+  }
+
+  /* =========================
+     BUDGET
+  ========================= */
+
+  .budget-section{
+    margin-top:22px;
+  }
+
+  .section-title{
+    color:var(--paper);
+    font-size:15px;
+    font-weight:700;
+    margin:0 0 10px 2px;
+  }
+
+  .budget-card{
+    background:var(--paper);
+    border-radius:14px;
+    padding:15px;
+  }
+
+  .budget-summary{
+    background:#f2f6ee;
+    border-radius:11px;
+    padding:12px;
+    margin-bottom:12px;
+  }
+
+  .budget-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    margin:5px 0;
+  }
+
+  .budget-row.total{
+    font-weight:800;
+    font-size:14px;
+    border-top:1px solid var(--line);
+    padding-top:8px;
+    margin-top:8px;
+  }
+
+  .budget-input-row{
+    display:flex;
+    gap:6px;
+    align-items:center;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .budget-input-row:last-child{
+    border-bottom:0;
+  }
+
+  .budget-label{
+    flex:1;
+    font-size:12px;
+    font-weight:600;
+  }
+
+  .budget-input{
+    width:110px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:7px;
+    text-align:right;
+    background:white;
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  footer{
+    text-align:center;
+    color:#9fb3ba;
+    font-size:11px;
+    margin-top:26px;
+    line-height:1.7;
+  }
+
+  .hidden{
+    display:none!important;
+  }
+
+  .logout-btn{
+    margin-top:10px;
+    border:0;
+    background:transparent;
+    color:#9fb3ba;
+    font-size:10px;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- =========================
+       JOIN SCREEN
+  ========================= -->
+
+  <div id="joinScreen" class="join-screen">
+
+    <div class="join-card">
+
+      <div class="join-top">
+        <h1 class="join-title">🇯🇵 OKA → 🇹🇼 TPE</h1>
+        <p class="join-subtitle">
+          沖縄 → 台湾<br>
+          3泊4日の旅行準備ロードマップ
+        </p>
+      </div>
+
+      <div class="join-body">
+
+        <div id="newTripArea">
+
+          <div class="field">
+            <label>あなたのニックネーム</label>
+            <input id="newNickname"
+                   maxlength="20"
+                   placeholder="例：はなたろう">
+          </div>
+
+          <button id="createTripBtn" class="primary-btn">
+            新しい旅行を作る
+          </button>
+
+          <div class="join-divider">または</div>
+
+        </div>
+
+        <div class="field">
+          <label>旅行コード</label>
+          <input id="tripCodeInput"
+                 maxlength="10"
+                 autocomplete="off"
+                 placeholder="例：K7M2PX">
+        </div>
+
+        <div class="field">
+          <label>ニックネーム</label>
+          <input id="nicknameInput"
+                 maxlength="20"
+                 autocomplete="nickname"
+                 placeholder="例：彼女">
+        </div>
+
+        <button id="joinTripBtn" class="primary-btn">
+          旅行に参加する
+        </button>
+
+        <div id="joinError" class="error-msg"></div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       MAIN APP
+  ========================= -->
+
+  <div id="appScreen" class="hidden">
+
+    <div class="pass">
+
+      <div class="pass-top">
+
+        <div class="dday">
+          <div class="num" id="ddayNum">D-–</div>
+          <div class="label">DAYS TO GO</div>
+        </div>
+
+        <p class="eyebrow">Travel Prep Boarding Pass</p>
+
+        <div class="route">
+          <span>OKA</span>
+          <span class="arrow">✈</span>
+          <span>TPE</span>
+        </div>
+
+        <div class="sub">
+          2026.09.19 — 09.22 &nbsp;|&nbsp; 3泊4日
+        </div>
+
+      </div>
+
+      <div class="perf"></div>
+
+      <div class="pass-bottom">
+
+        <div>
+          PASSENGERS
+          <b>2名</b>
+        </div>
+
+        <div style="text-align:right">
+          STATUS
+          <b id="statusWord">準備中</b>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Progress -->
+
+    <div class="progress-card">
+
+      <div class="progress-head">
+        <span>準備の進捗</span>
+        <span id="progressPct">0%</span>
+      </div>
+
+      <div class="bar">
+        <div class="bar-fill" id="barFill"></div>
+      </div>
+
+      <div class="status-msg" id="statusMsg"></div>
+
+    </div>
+
+
+    <!-- Filter -->
+
+    <div class="toolbar">
+
+      <button class="filter-btn active" data-filter="all">
+        すべて
+      </button>
+
+      <button class="filter-btn" data-filter="todo">
+        未完了
+      </button>
+
+      <button class="filter-btn" data-filter="done">
+        完了
+      </button>
+
+    </div>
+
+
+    <div id="phases"></div>
+
+
+    <!-- =========================
+         BUDGET
+    ========================= -->
+
+    <div class="budget-section">
+
+      <h2 class="section-title">💰 予算</h2>
+
+      <div class="budget-card">
+
+        <div class="budget-summary">
+
+          <div class="budget-row">
+            <span>予算上限</span>
+            <strong>¥200,000</strong>
+          </div>
+
+          <div class="budget-row">
+            <span>現在の合計</span>
+            <strong id="budgetTotal">¥0</strong>
+          </div>
+
+          <div class="budget-row total">
+            <span>残り</span>
+            <strong id="budgetRemaining">¥200,000</strong>
+          </div>
+
+        </div>
+
+        <div id="budgetInputs"></div>
+
+      </div>
+
+    </div>
+
+
+    <footer>
+
+      旅行コード：
+      <strong id="displayTripCode"></strong>
+
+      <br>
+
+      <button id="copyCodeBtn" class="logout-btn">
+        旅行コードをコピー
+      </button>
+
+      <br><br>
+
+      チェック・メモ・予算は2人で共有されます。<br>
+      最終確認は必ず公式情報で。
+
+      <br>
+
+      <button id="leaveBtn" class="logout-btn">
+        この端末の旅行情報を解除
+      </button>
+
+    </footer>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   Firebase SDK
+========================================================= */
+
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+  getAuth,
+  signInAnonymously,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  onSnapshot,
+  serverTimestamp,
+  collection,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+/* =========================================================
+   Firebase configuration
+========================================================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCWgqrEghE0EYXJ2SNtwrkQ3ZSnlX4JhU8",
+  authDomain: "taipei-tour-roadmap.firebaseapp.com",
+  projectId: "taipei-tour-roadmap",
+  storageBucket: "taipei-tour-roadmap.firebasestorage.app",
+  messagingSenderId: "966387471570",
+  appId: "1:966387471570:web:25d99667b26681fe1a090b"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* =========================================================
+   Travel data
+========================================================= */
+
+const TRIP_DEPARTURE =
+  new Date("2026-09-19T00:00:00+09:00");
+
+const DATA = [
+  {
+    phase:"PHASE 1",
+    title:"最優先タスク",
+    when:"〜 8/30",
+    items:[
+      {
+        id:"passport-apply",
+        title:"パスポートを申請する(新規または更新)",
+        note:"写真・申請書・本人確認書類を準備。受け取りまで余裕を持って進める。",
+      },
+      {
+        id:"passport-check-other",
+        title:"もう1人のパスポートの残存期間も確認",
+        note:"2人とも有効期限をチェック。",
+      }
+    ]
+  },
+
+  {
+    phase:"PHASE 2",
+    title:"航空券・宿泊・保険",
+    when:"〜 9/1",
+    items:[
+      {
+        id:"flight-book",
+        title:"那覇⇔台北(桃園)の航空券を予約",
+        note:"直行便を中心に価格・時間を比較。",
+      },
+      {
+        id:"hotel-book",
+        title:"台北などの宿泊先を予約",
+        note:"3泊分。駅近など立地も確認。",
+      },
+      {
+        id:"insurance",
+        title:"海外旅行保険への加入を検討",
+        note:"クレジットカード付帯保険の補償内容も確認。",
+      }
+    ]
+  },
+
+  {
+    phase:"PHASE 3",
+    title:"現地準備・持ち物",
+    when:"〜 9/8",
+    items:[
+      {
+        id:"sim-wifi",
+        title:"現地SIM／WiFiレンタルを手配",
+        note:"eSIMやポケットWiFiを比較。",
+      },
+      {
+        id:"itinerary",
+        title:"ざっくり観光プラン・行きたい場所リストを作る",
+        note:"食べたいもの・行きたいエリアを2人で出し合う。",
+      },
+      {
+        id:"currency",
+        title:"両替方法を決める",
+        note:"現地ATM・空港両替などを比較。",
+      },
+      {
+        id:"packing-list",
+        title:"持ち物リストを作成",
+        note:"パスポート、充電器、モバイルバッテリーなどを確認。",
+      }
+    ]
+  },
+
+  {
+    phase:"PHASE 4",
+    title:"出発直前",
+    when:"9/16〜9/18",
+    items:[
+      {
+        id:"arrival-card",
+        title:"台湾入国カードをオンライン登録",
+        note:"2人分それぞれ登録。",
+      },
+      {
+        id:"packing",
+        title:"荷造りを済ませる",
+        note:"パスポート・航空券・宿泊確認書・現金・充電器を確認。",
+      },
+      {
+        id:"checkin",
+        title:"航空会社のオンラインチェックインを行う",
+        note:"可能な航空会社は事前に済ませる。",
+      },
+      {
+        id:"share-contacts",
+        title:"緊急連絡先・現地大使館情報をスマホにメモ",
+        note:"日本台湾交流協会などの連絡先を保存。",
+      }
+    ]
+  },
+
+  {
+    phase:"PHASE 5",
+    title:"出発当日",
+    when:"9/19",
+    items:[
+      {
+        id:"departure-time",
+        title:"出発2時間前を目安に那覇空港へ",
+        note:"国際線なので時間に余裕を持つ。",
+      },
+      {
+        id:"final-check",
+        title:"パスポート・搭乗券・入国カードQRを手元に準備",
+        note:"スマホのバッテリー残量も確認。",
+      }
+    ]
+  }
+];
+
+
+/* =========================================================
+   Budget categories
+========================================================= */
+
+const BUDGET_CATEGORIES = [
+  ["flight","✈️ 航空券"],
+  ["hotel","🏨 ホテル"],
+  ["transport","🚃 交通"],
+  ["food","🍜 食費"],
+  ["activity","🎫 観光・アクティビティ"],
+  ["communication","📱 通信"],
+  ["cash","💴 両替・現金"],
+  ["shopping","🛍️ 買い物"],
+  ["other","📦 その他"]
+];
+
+const BUDGET_LIMIT = 200000;
+
+
+/* =========================================================
+   Local session
+========================================================= */
+
+const SESSION_KEY = "taipei-tour-session";
+
+let currentUser = null;
+let tripCode = null;
+let nickname = null;
+
+let checklistState = {};
+let notesState = {};
+let budgetState = {};
+
+let unsubscribeChecklist = null;
+let unsubscribeNotes = null;
+let unsubscribeBudget = null;
+
+let currentFilter = "all";
+
+
+/* =========================================================
+   Utility
+========================================================= */
+
+function generateTripCode(){
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let result = "";
+
+  for(let i=0;i<6;i++){
+    result += chars[
+      Math.floor(Math.random()*chars.length)
+    ];
+  }
+
+  return result;
+}
+
+function allIds(){
+  return DATA.flatMap(
+    p => p.items.map(i => i.id)
+  );
+}
+
+function formatYen(value){
+  return "¥" + Number(value || 0).toLocaleString("ja-JP");
+}
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* =========================================================
+   D-Day
+========================================================= */
+
+function renderDday(){
+
+  const now = new Date();
+
+  const diff =
+    Math.ceil(
+      (TRIP_DEPARTURE - now)
+      / (1000*60*60*24)
+    );
+
+  const el =
+    document.getElementById("ddayNum");
+
+  const status =
+    document.getElementById("statusWord");
+
+  if(diff > 0){
+
+    el.textContent = "D-" + diff;
+    status.textContent = "準備中";
+
+  }else if(diff === 0){
+
+    el.textContent = "D-DAY";
+    status.textContent = "出発当日";
+
+  }else{
+
+    el.textContent = "帰国済";
+    status.textContent = "終了";
+
+  }
+}
+
+
+/* =========================================================
+   Authentication
+========================================================= */
+
+async function initAuth(){
+
+  try{
+
+    await signInAnonymously(auth);
+
+  }catch(error){
+
+    console.error(error);
+
+    showJoinError(
+      "Firebaseへの接続に失敗しました。"
+    );
+  }
+}
+
+onAuthStateChanged(auth,user=>{
+
+  if(!user) return;
+
+  currentUser = user;
+
+  const saved =
+    localStorage.getItem(SESSION_KEY);
+
+  if(saved){
+
+    try{
+
+      const data = JSON.parse(saved);
+
+      if(
+        data.tripCode &&
+        data.nickname
+      ){
+
+        joinExistingTrip(
+          data.tripCode,
+          data.nickname,
+          true
+        );
+
+      }
+
+    }catch(e){
+
+      console.error(e);
+
+    }
+  }
+});
+
+
+/* =========================================================
+   Create trip
+========================================================= */
+
+async function createTrip(){
+
+  if(!currentUser){
+
+    showJoinError(
+      "認証が完了していません。少し待ってください。"
+    );
+
+    return;
+  }
+
+  const input =
+    document.getElementById("newNickname");
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+
+    showJoinError(
+      "ニックネームを入力してください。"
+    );
+
+    return;
+  }
+
+  const button =
+    document.getElementById("createTripBtn");
+
+  button.disabled = true;
+  button.textContent = "旅行を作成中…";
+
+  try{
+
+    const code = generateTripCode();
+
+    const ref = doc(
+      db,
+      "trips",
+      code
+     );
+
+    await setDoc(ref,{
+      createdAt:serverTimestamp(),
+      createdBy:currentUser.uid,
+      title:"沖縄 → 台湾",
+      budgetLimit:BUDGET_LIMIT
+    });
+
+    await setDoc(
+      doc(
+        db,
+        "trips",
+        code,
+        "members",
+        currentUser.uid
+      ),
+      {
+        nickname:name,
+        joinedAt:serverTimestamp()
+      }
+    );
+
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify({
+        tripCode:code,
+        nickname:name
+      })
+    );
+
+    tripCode = code;
+    nickname = name;
+
+    showCreatedCode();
+
+    setTimeout(()=>{
+      openApp();
+    },800);
+
+  }catch(error){
+
+    console.error(error);
+
+    showJoinError(
+      "旅行の作成に失敗しました。"
+    );
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "新しい旅行を作る";
+
+  }
+}
+
+
+/* =========================================================
+   Join trip
+========================================================= */
+
+async function joinTrip(){
+
+  const code =
+    document
+      .getElementById("tripCodeInput")
+      .value
+      .trim()
+      .toUpperCase();
+
+  const name =
+    document
+      .getElementById("nicknameInput")
+      .value
+      .trim();
+
+  await joinExistingTrip(
+    code,
+    name,
+    false
+  );
+}
+
+
+async function joinExistingTrip(
+  code,
+  name,
+  silent
+){
+
+  if(!currentUser) return;
+
+  if(!code || !name){
+
+    if(!silent){
+
+      showJoinError(
+        "旅行コードとニックネームを入力してください。"
+      );
+
+    }
+
+    return;
+  }
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "trips",
+        code,
+        "members",
+        currentUser.uid
+      ),
+      {
+        nickname:name,
+        joinedAt:serverTimestamp()
+      }
+    );
+
+    tripCode = code;
+    nickname = name;
+
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify({
+        tripCode:code,
+        nickname:name
+      })
+    );
+
+    openApp();
+
+  }catch(error){
+
+    console.error(error);
+
+    if(!silent){
+
+      showJoinError(
+        "旅行への参加に失敗しました。"
+      );
+
+    }
+  }
+}
+
+
+/* =========================================================
+   Created code screen
+========================================================= */
+
+function showCreatedCode(){
+
+  const body =
+    document.querySelector(".join-body");
+
+  body.innerHTML = `
+
+    <div class="code-display">
+
+      <div class="code-display-label">
+        あなたの旅行コード
+      </div>
+
+      <div class="trip-code">
+        ${escapeHtml(tripCode)}
+      </div>
+
+    </div>
+
+    <p style="
+      font-size:12px;
+      line-height:1.6;
+      color:var(--gray);
+      text-align:center;
+    ">
+      このコードを一緒に旅行する人に<br>
+      送ってください。
+    </p>
+
+    <button
+      id="copyCreatedCodeBtn"
+      class="primary-btn"
+    >
+      旅行コードをコピー
+    </button>
+
+  `;
+
+  document
+    .getElementById("copyCreatedCodeBtn")
+    .addEventListener(
+      "click",
+      async ()=>{
+
+        try{
+
+          await navigator.clipboard.writeText(
+            tripCode
+          );
+
+          document
+            .getElementById(
+              "copyCreatedCodeBtn"
+            )
+            .textContent =
+              "コピーしました ✓";
+
+        }catch(e){
+
+          alert(
+            "旅行コード：" +
+            tripCode
+          );
+        }
+
+      }
+    );
+}
+
+
+/* =========================================================
+   Open app
+========================================================= */
+
+function openApp(){
+
+  document
+    .getElementById("joinScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("appScreen")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("displayTripCode")
+    .textContent = tripCode;
+
+  startRealtimeListeners();
+
+  renderDday();
+
+  render();
+
+  renderBudget();
+}
+
+
+/* =========================================================
+   Firestore realtime listeners
+========================================================= */
+
+function startRealtimeListeners(){
+
+  if(unsubscribeChecklist)
+    unsubscribeChecklist();
+
+  if(unsubscribeNotes)
+    unsubscribeNotes();
+
+  if(unsubscribeBudget)
+    unsubscribeBudget();
+
+
+  /* Checklist */
+
+  const checklistRef =
+    collection(
+      db,
+      "trips",
+      tripCode,
+      "checklist"
+    );
+
+  unsubscribeChecklist =
+    onSnapshot(
+      checklistRef,
+      snapshot=>{
+
+        checklistState = {};
+
+        snapshot.forEach(docSnap=>{
+
+          checklistState[
+            docSnap.id
+          ] = docSnap.data();
+
+        });
+
+        render();
+
+      },
+      error=>{
+
+        console.error(error);
+
+        flashStatus(
+          "チェックリストの読み込みに失敗しました"
+        );
+
+      }
+    );
+
+
+  /* Notes */
+
+  const notesRef =
+    collection(
+      db,
+      "trips",
+      tripCode,
+      "notes"
+    );
+
+  unsubscribeNotes =
+    onSnapshot(
+      notesRef,
+      snapshot=>{
+
+        notesState = {};
+
+        snapshot.forEach(docSnap=>{
+
+          notesState[
+            docSnap.id
+          ] = docSnap.data();
+
+        });
+
+        render();
+
+      },
+      error=>{
+
+        console.error(error);
+
+      }
+    );
+
+
+  /* Budget */
+
+  const budgetRef =
+    collection(
+      db,
+      "trips",
+      tripCode,
+      "budget"
+    );
+
+  unsubscribeBudget =
+    onSnapshot(
+      budgetRef,
+      snapshot=>{
+
+        budgetState = {};
+
+        snapshot.forEach(docSnap=>{
+
+          budgetState[
+            docSnap.id
+          ] = docSnap.data();
+
+        });
+
+        renderBudget();
+
+      },
+      error=>{
+
+        console.error(error);
+
+      }
+    );
+}
+
+
+/* =========================================================
+   Checklist
+========================================================= */
+
+async function toggleChecklist(id){
+
+  const old =
+    checklistState[id] || {};
+
+  const checked =
+    !Boolean(old.checked);
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "trips",
+        tripCode,
+        "checklist",
+        id
+      ),
+      {
+        checked,
+        updatedBy:nickname,
+        updatedByUid:currentUser.uid,
+        updatedAt:serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    flashStatus(
+      "保存に失敗しました"
+    );
+  }
+}
+
+
+/* =========================================================
+   Notes
+========================================================= */
+
+async function saveNote(id){
+
+  const textarea =
+    document.querySelector(
+      `[data-note-id="${id}"]`
+    );
+
+  if(!textarea) return;
+
+  const text =
+    textarea.value.trim();
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "trips",
+        tripCode,
+        "notes",
+        id
+      ),
+      {
+        text,
+        updatedBy:nickname,
+        updatedByUid:currentUser.uid,
+        updatedAt:serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+    flashStatus("メモを保存しました");
+
+  }catch(error){
+
+    console.error(error);
+
+    flashStatus(
+      "メモの保存に失敗しました"
+    );
+  }
+}
+
+
+/* =========================================================
+   Render checklist
+========================================================= */
+
+function render(){
+
+  const container =
+    document.getElementById("phases");
+
+  container.innerHTML = "";
+
+  DATA.forEach(phase=>{
+
+    const visibleItems =
+      phase.items.filter(item=>{
+
+        const done =
+          Boolean(
+            checklistState[item.id]?.checked
+          );
+
+        if(currentFilter === "todo")
+          return !done;
+
+        if(currentFilter === "done")
+          return done;
+
+        return true;
+
+      });
+
+    if(!visibleItems.length)
+      return;
+
+
+    const section =
+      document.createElement("div");
+
+    section.className = "phase";
+
+
+    const head =
+      document.createElement("div");
+
+    head.className = "phase-head";
+
+    head.innerHTML = `
+      <span class="phase-tag">
+        ${escapeHtml(phase.phase)}
+      </span>
+
+      <span class="phase-title">
+        ${escapeHtml(phase.title)}
+      </span>
+
+      <span class="phase-when">
+        ${escapeHtml(phase.when)}
+      </span>
+    `;
+
+    section.appendChild(head);
+
+
+    const card =
+      document.createElement("div");
+
+    card.className = "card";
+
+
+    visibleItems.forEach(item=>{
+
+      const data =
+        checklistState[item.id] || {};
+
+      const done =
+        Boolean(data.checked);
+
+      const note =
+        notesState[item.id]?.text || "";
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "item" +
+        (done ? " done" : "");
+
+
+      row.innerHTML = `
+
+        <div
+          class="check ${done ? "checked" : ""}"
+          data-check-id="${escapeHtml(item.id)}"
+        >
+          <svg viewBox="0 0 24 24">
+            <polyline points="4,13 9,18 20,6"></polyline>
+          </svg>
+        </div>
+
+        <div class="item-body">
+
+          <div class="item-title">
+            ${escapeHtml(item.title)}
+          </div>
+
+          <div class="item-note">
+            ${escapeHtml(item.note)}
+          </div>
+
+          ${
+            data.updatedBy
+              ? `
+                <div class="last-updated">
+                  最終更新：
+                  <strong>
+                    ${escapeHtml(data.updatedBy)}
+                  </strong>
+                </div>
+              `
+              : ""
+          }
+
+          <div class="memo-box">
+
+            <textarea
+              data-note-id="${escapeHtml(item.id)}"
+              placeholder="2人で共有するメモ…"
+            >${escapeHtml(note)}</textarea>
+
+            <button
+              class="memo-save"
+              data-save-note="${escapeHtml(item.id)}"
+            >
+              メモを保存
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+      card.appendChild(row);
+
+    });
+
+
+    section.appendChild(card);
+
+    container.appendChild(section);
+
+  });
+
+
+  container
+    .querySelectorAll("[data-check-id]")
+    .forEach(el=>{
+
+      el.addEventListener(
+        "click",
+        ()=>{
+
+          toggleChecklist(
+            el.dataset.checkId
+          );
+
+        }
+      );
+
+    });
+
+
+  container
+    .querySelectorAll("[data-save-note]")
+    .forEach(button=>{
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          saveNote(
+            button.dataset.saveNote
+          );
+
+        }
+      );
+
+    });
+
+
+  updateProgress();
+}
+
+
+/* =========================================================
+   Progress
+========================================================= */
+
+function updateProgress(){
+
+  const ids = allIds();
+
+  const done =
+    ids.filter(
+      id =>
+        checklistState[id]?.checked
+    ).length;
+
+  const pct =
+    ids.length
+      ? Math.round(
+          done / ids.length * 100
+        )
+      : 0;
+
+  document
+    .getElementById("barFill")
+    .style.width =
+      pct + "%";
+
+  document
+    .getElementById("progressPct")
+    .textContent =
+      `${pct}% (${done}/${ids.length})`;
+}
+
+
+/* =========================================================
+   Budget
+========================================================= */
+
+function renderBudget(){
+
+  const container =
+    document.getElementById(
+      "budgetInputs"
+    );
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  BUDGET_CATEGORIES.forEach(
+    ([id,label])=>{
+
+      const amount =
+        Number(
+          budgetState[id]?.amount || 0
+        );
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "budget-input-row";
+
+      row.innerHTML = `
+
+        <div class="budget-label">
+          ${escapeHtml(label)}
+        </div>
+
+        <input
+          class="budget-input"
+          type="number"
+          min="0"
+          step="100"
+          value="${amount || ""}"
+          placeholder="0"
+          data-budget-id="${id}"
+        >
+
+      `;
+
+      container.appendChild(row);
+
+    }
+  );
+
+
+  container
+    .querySelectorAll("[data-budget-id]")
+    .forEach(input=>{
+
+      input.addEventListener(
+        "change",
+        ()=>{
+
+          saveBudget(
+            input.dataset.budgetId,
+            input.value
+          );
+
+        }
+      );
+
+    });
+
+
+  updateBudgetSummary();
+}
+
+
+async function saveBudget(
+  id,
+  value
+){
+
+  const amount =
+    Math.max(
+      0,
+      Number(value) || 0
+    );
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "trips",
+        tripCode,
+        "budget",
+        id
+      ),
+      {
+        amount,
+        updatedBy:nickname,
+        updatedByUid:currentUser.uid,
+        updatedAt:serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+    flashStatus(
+      "予算を保存しました"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    flashStatus(
+      "予算の保存に失敗しました"
+    );
+  }
+}
+
+
+function updateBudgetSummary(){
+
+  const total =
+    BUDGET_CATEGORIES.reduce(
+      (sum,[id]) =>
+        sum +
+        Number(
+          budgetState[id]?.amount || 0
+        ),
+      0
+    );
+
+  const remaining =
+    BUDGET_LIMIT - total;
+
+  document
+    .getElementById("budgetTotal")
+    .textContent =
+      formatYen(total);
+
+  document
+    .getElementById("budgetRemaining")
+    .textContent =
+      formatYen(remaining);
+}
+
+
+/* =========================================================
+   Filters
+========================================================= */
+
+document
+  .querySelectorAll(".filter-btn")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        currentFilter =
+          button.dataset.filter;
+
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach(btn=>{
+            btn.classList.remove(
+              "active"
+            );
+          });
+
+        button.classList.add("active");
+
+        render();
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   Status
+========================================================= */
+
+let flashTimer;
+
+function flashStatus(msg){
+
+  const el =
+    document.getElementById(
+      "statusMsg"
+    );
+
+  el.textContent = msg;
+
+  clearTimeout(flashTimer);
+
+  flashTimer =
+    setTimeout(
+      ()=>{
+        el.textContent = "";
+      },
+      1800
+    );
+}
+
+
+function showJoinError(msg){
+
+  document
+    .getElementById(
+      "joinError"
+    )
+    .textContent = msg;
+}
+
+
+/* =========================================================
+   Copy code
+========================================================= */
+
+document
+  .getElementById("copyCodeBtn")
+  .addEventListener(
+    "click",
+    async ()=>{
+
+      try{
+
+        await navigator.clipboard.writeText(
+          tripCode
+        );
+
+        flashStatus(
+          "旅行コードをコピーしました"
+        );
+
+      }catch(e){
+
+        alert(
+          "旅行コード：" +
+          tripCode
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   Leave current device
+========================================================= */
+
+document
+  .getElementById("leaveBtn")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      if(
+        !confirm(
+          "この端末の旅行情報を解除しますか？\n\nFirebase上の旅行データは削除されません。"
+        )
+      ){
+        return;
+      }
+
+      localStorage.removeItem(
+        SESSION_KEY
+      );
+
+      location.reload();
+
+    }
+  );
+
+
+/* =========================================================
+   Buttons
+========================================================= */
+
+document
+  .getElementById("createTripBtn")
+  .addEventListener(
+    "click",
+    createTrip
+  );
+
+document
+  .getElementById("joinTripBtn")
+  .addEventListener(
+    "click",
+    joinTrip
+  );
+
+
+/* =========================================================
+   Startup
+========================================================= */
+
+renderDday();
+
+setInterval(
+  renderDday,
+  60 * 60 * 1000
+);
+
+initAuth();
+
+</script>
+
+</body>
+</html>
